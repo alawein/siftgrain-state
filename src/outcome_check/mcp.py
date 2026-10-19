@@ -2,7 +2,7 @@
 
 import json
 import sys
-from typing import TextIO
+from typing import BinaryIO, TextIO
 
 from outcome_check.contract import InputError, invalid_constant, unique_pairs
 from outcome_check.core import check_packet
@@ -67,18 +67,19 @@ def dispatch(request: dict) -> dict:
     raise ProtocolError(-32601, "method not found")
 
 
-def serve(source: TextIO, target: TextIO) -> None:
+def serve(source: TextIO | BinaryIO, target: TextIO) -> None:
     while True:
         line = source.readline(LIMIT + 1)
         if not line:
             return
-        # Oversized frames end this stream, rather than parsing their tail as requests.
-        if len(line.encode("utf-8")) > LIMIT:
-            return
         request_id = None
         try:
+            raw = line.encode("utf-8") if isinstance(line, str) else line
+            # Oversized frames end this stream, rather than parsing their tail as requests.
+            if len(raw) > LIMIT:
+                return
             request = json.loads(
-                line, object_pairs_hook=unique_pairs, parse_constant=invalid_constant
+                raw.decode("utf-8"), object_pairs_hook=unique_pairs, parse_constant=invalid_constant
             )
             if (
                 type(request) is not dict
@@ -107,7 +108,7 @@ def serve(source: TextIO, target: TextIO) -> None:
 
 
 def main() -> None:
-    serve(sys.stdin, sys.stdout)
+    serve(sys.stdin.buffer, sys.stdout)
 
 
 if __name__ == "__main__":

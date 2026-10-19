@@ -48,6 +48,11 @@ per line, at most 5 MiB. Oversized frames terminate the stream without parsing a
 tail as a new request. Notifications get no reply. Unsupported methods and
 invalid requests use protocol errors; invalid packets use tool `isError=true`.
 
+Native stdin is framed in bytes and decoded as strict UTF-8, independent of the
+host's text-stream locale. Malformed UTF-8 produces a parse error (`-32700` with
+null ID); the next valid frame can still be handled. The byte limit includes the
+frame's newline. Valid Unicode request IDs are preserved.
+
 The only tool is `check`, with exactly `{ "packet": <packet object> }`.
 It returns both text JSON and `structuredContent`. It advertises read-only,
 idempotent, closed-world behavior. Tests deny sockets, subprocesses, and every
