@@ -49,11 +49,18 @@ def convert(
         expected = {"resolved": True}
     elif kind == "tau":
         subject = record.get("task_id")
+        for key in ("final_state", "initial_state"):
+            require(key not in record or type(record[key]) is dict, f"{key} must be an object")
         state, before = record.get("final_state"), record.get("initial_state")
     elif kind == "inspect":
         subject = record.get("id")
         store = record.get("store", {})
         require(type(store) is dict, "Inspect store must be an object")
+        for key in ("outcome_state", "baseline_state"):
+            require(
+                key not in store or type(store[key]) is dict,
+                f"Inspect {key} must be an object",
+            )
         state, before = store.get("outcome_state"), store.get("baseline_state")
     else:
         raise ValueError("adapter must be tau, swebench or inspect")

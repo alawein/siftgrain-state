@@ -82,6 +82,44 @@ def test_tau_missing_final_is_unobserved_even_with_reward():
     assert check_packet(p)["counts"]["unobserved"] == 1
 
 
+@pytest.mark.parametrize(
+    ("kind", "record", "baseline_at", "requires_change"),
+    [
+        ("tau", {"task_id": "x", "final_state": None}, None, False),
+        (
+            "tau",
+            {"task_id": "x", "final_state": {"refund": True}, "initial_state": None},
+            "2026-10-13T11:58:00Z",
+            True,
+        ),
+        ("inspect", {"id": "x", "store": {"outcome_state": None}}, None, False),
+        (
+            "inspect",
+            {
+                "id": "x",
+                "store": {"outcome_state": {"refund": True}, "baseline_state": None},
+            },
+            "2026-10-13T11:58:00Z",
+            True,
+        ),
+    ],
+)
+def test_explicit_null_snapshots_are_rejected_without_mutating_input(
+    kind, record, baseline_at, requires_change
+):
+    data = deepcopy(record)
+    with pytest.raises(InputError):
+        convert(
+            kind,
+            data,
+            expected={"refund": True},
+            baseline_at=baseline_at,
+            requires_change=requires_change,
+            **options(),
+        )
+    assert data == record
+
+
 def test_mcp_readonly_roundtrip_and_errors():
     requests = [
         {
