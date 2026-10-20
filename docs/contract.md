@@ -134,6 +134,11 @@ number support. Ordinary unsigned checks still accept all finite JSON floats.
 
 ## Local report writes
 
+HTML displays lone surrogates accepted in unsigned JSON as visible `\ud800`-style
+backslash escapes, including in evidence cells and the timeline. Ordinary Unicode
+is preserved. This display rule does not change verdicts, JSON report bytes,
+embedded download bytes, or signing and canonicalization restrictions.
+
 All inputs and target aliases (including existing hard links) are checked before
 any write. --force permits replacing reports; its absence never overwrites a newly
 created competing target. Each report stages beside its target, flushes/fsyncs, then

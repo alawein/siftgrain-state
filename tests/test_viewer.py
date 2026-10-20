@@ -1,5 +1,6 @@
 import base64
 import hashlib
+import html
 import json
 import re
 import runpy
@@ -12,7 +13,7 @@ from test_outcomes import packet as make_packet
 from outcome_check.cli import main
 from outcome_check.contract import InputError, validate
 from outcome_check.core import check_packet
-from outcome_check.report import render_html
+from outcome_check.report import render_html, render_json
 
 
 def _download_hrefs(page):
@@ -151,6 +152,71 @@ def test_html_escapes_malicious_evidence():
     assert "<script>" not in page
     assert "&lt;script&gt;" in page
     assert "&lt;b&gt;" in page
+
+
+@pytest.mark.parametrize(
+    "text,display",
+    [
+        ("high \ud800", r"high \ud800"),
+        ("low \udfff", r"low \udfff"),
+        ("separate \ud800 \udfff", r"separate \ud800 \udfff"),
+        ("Málaga 水 😀 �", "Málaga 水 😀 �"),
+    ],
+)
+def test_html_exports_unsigned_surrogates_as_visible_escapes(text, display):
+    p = make_packet()
+    # Cover evidence cells and identifiers repeated in the enhanced timeline.
+    value = text + " <script>alert(1)</script>"
+    p["requirements"][0].update(id=value, expected=value, observation_id=value, action_id=value)
+    p["actions"][0]["id"] = value
+    p["observations"][0].update(id=value, state={"time": value})
+    report = check_packet(p)
+    report_bytes = render_json(report).encode("utf-8")
+    page = render_html(
+        report,
+        p,
+        download_links={"Report": "report.json"},
+        download_files={"report.json": report_bytes},
+    )
+    assert page.encode("utf-8").decode("utf-8") == page
+    shown = html.escape(display + " <script>alert(1)</script>")
+    table = page.split("<tbody>", 1)[1].split("</tbody>", 1)[0]
+    timeline = page.split('<ol class="timeline">', 1)[1].split("</ol>", 1)[0]
+    assert shown in table
+    assert shown in timeline
+    assert "<script>alert(1)</script>" not in page
+    assert report["results"][0]["status"] == "confirmed"
+    embedded = _download_hrefs(page)["report.json"].split(",", 1)[1]
+    assert base64.b64decode(embedded, validate=True) == report_bytes
+    assert json.loads(report_bytes) == report
+
+
+@pytest.mark.parametrize(
+    "text,display",
+    [
+        ("high \ud800", r"high \ud800"),
+        ("low \udfff", r"low \udfff"),
+        ("Málaga 水 😀 �", "Málaga 水 😀 �"),
+    ],
+)
+def test_cli_html_export_preserves_unsigned_json_report(tmp_path, capsys, text, display):
+    p = make_packet()
+    p["requirements"][0]["expected"] = text
+    p["observations"][0]["state"]["time"] = text
+    packet_bytes = json.dumps(p).encode("utf-8")
+    source = tmp_path / "packet.json"
+    source.write_bytes(packet_bytes)
+    html_output = tmp_path / "report.html"
+    json_output = tmp_path / "report.json"
+    expected = check_packet(p)
+    expected["input_sha256"] = hashlib.sha256(packet_bytes).hexdigest()
+
+    assert main([str(source), "--json", str(json_output), "--html", str(html_output)]) == 0
+    assert capsys.readouterr().err == ""
+    page = html_output.read_text(encoding="utf-8")
+    assert display in page
+    assert json_output.read_bytes() == render_json(expected).encode("utf-8")
+    assert source.read_bytes() == packet_bytes
 
 
 def test_html_truncates_large_state_with_marker():

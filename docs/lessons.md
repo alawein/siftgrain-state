@@ -15,3 +15,4 @@ Format: `YYYY-MM-DD | area | what happened | rule`
 - 2026-10-04 | setup | Repo created from the kit starter | Run the check command once before the first change.
 - 2026-10-04 | report-viewer | Structured HTML table plus help and row-index errors kept JSON bytes stable | Keep viewer work additive: comparison math and report.json bytes stay pinned.
 - 2026-10-04 | review-lanes | Row context belongs in every validator, not only field checks | Thread a where argument through timestamp and JSON-depth errors when adding row-index messages.
+- 2026-10-19 | report-export | Accepted unsigned JSON with escaped lone surrogates failed HTML export | Escape unencodable display characters after assembling all viewer surfaces; preserve original JSON and download bytes.

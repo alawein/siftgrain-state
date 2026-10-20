@@ -352,4 +352,6 @@ def render_html(
     from outcome_check._tokens import TOKENS
     from outcome_check.viewer import enhance
 
-    return enhance(page, results, TOKENS)
+    # Unsigned JSON may contain lone surrogates. Show their escapes in every
+    # display surface, including the enhanced timeline, without changing data.
+    return enhance(page, results, TOKENS).encode("utf-8", errors="backslashreplace").decode("utf-8")
