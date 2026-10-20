@@ -44,8 +44,12 @@ Browser-only development tools now also use `npm audit --json` in report-only
 CI. Audit findings do not change zero-default-dependency Python runtime scope.
 Do not blindly apply audit fix --force or enable Dependabot to clear reports.
 
-The final development-tool audit snapshot reports 36 npm findings (2 low,
+The pre-update development-tool audit snapshot reported 36 npm findings (2 low,
 23 moderate, 11 high) after adding the requested native Lighthouse CI CLI.
+The October 19, 2026 Lighthouse 13.5.0 update reduced that package-finding total
+to 17 (2 low, 4 moderate, 11 high, 0 critical). The audit still labels direct
+Lighthouse and both LHCI Lighthouse paths through aggregate Puppeteer findings;
+the reduction does not establish exploit reachability or a clean dependency path.
 These are development-only dependencies; no claim of a clean browser-tool audit
 is made. The Python dependency snapshot reports no known vulnerabilities; the
 unpublished development package itself is skipped by the public vulnerability
