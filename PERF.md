@@ -28,12 +28,18 @@ results are in [docs/browser-results.json](docs/browser-results.json).
 
 ## Lighthouse and bytes
 
-`npm run perf` runs Lighthouse 12.8.2 on the same report through an ephemeral
+`npm run perf` runs Lighthouse 13.5.0 on the same report through an ephemeral
 localhost server because Lighthouse navigation requires HTTP. No external assets
-or network-enabled product path is introduced. Candidate-source clean-clone performance score
+or network-enabled product path is introduced. The retained Lighthouse 12.8.2
+candidate-source clean-clone measurement has performance score
 0.97, accessibility 1, LCP 1002.00 ms,
 total blocking time 0.00 ms. Field INP is unavailable in a navigation audit.
 Local-file LCP comes from Playwright above, not the localhost Lighthouse run.
+
+The October 19, 2026 local Lighthouse 13.5.0 run measured performance 0.97,
+accessibility 1, LCP 955.175 ms and total blocking time 0 ms. These synthetic
+measurements do not replace the retained 12.8.2 summary in
+[docs/lighthouse-summary.json](docs/lighthouse-summary.json).
 
 CI enforces Lighthouse LCP<2500 ms and accessibility 1.0, full axe checks,
 active-cadence/event limits, and emitted report gzip<=32,768 bytes. The exact bytes
@@ -61,8 +67,9 @@ node scripts/record-demos.mjs
 ```
 
 Browser tooling is development-only. Playwright 1.62.1 release July 30, 2026;
-axe 4.10.3 March 5, 2025; Lighthouse 12.8.2 August 28, 2025 (npm time metadata read
-October 13, 2026). npm/pip audits are report-only. No audit result is a security
+axe 4.10.3 March 5, 2025 (npm time metadata read October 13, 2026). Direct
+Lighthouse is pinned at 13.5.0; LHCI retains its nested 12.6.1.
+npm/pip audits are report-only. No audit result is a security
 certificate. Hardware identity is in RESULTS.md; remote CI timing is separate.
 
 ## Host contention and exact tooling
