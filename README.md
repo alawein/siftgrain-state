@@ -1,21 +1,20 @@
 # Siftgrain State
 
-Siftgrain State is the supplied-evidence outcome checker in the Siftgrain suite,
-alongside [Siftgrain Cite](https://github.com/alawein/siftgrain-cite) for human
-citation review and [Siftgrain Audit](https://github.com/alawein/siftgrain-audit)
-for evaluation completeness. State checks requested outcomes against explicitly
-supplied observations; it does not execute actions or track them over time.
+Siftgrain State checks whether the evidence you supply supports an AI agent's
+requested outcome. It is for developers who evaluate agents and need to verify a
+reported result against observed state. It does not execute actions or track
+them over time.
 
 ![Siftgrain State](brand/wordmark.svg)
 
-Check whether supplied observations support an agent's requested outcome.
 A successful action receipt can accompany the wrong state. Siftgrain State
-keeps the receipt, observation, baseline, freshness, and verdict visible together.
-
-The existing `outcome-check` Python package and CLI remain compatible. The core
-uses Python 3.11+ and the standard library, with no network or model calls.
+shows the receipt, observation, baseline, freshness, and verdict together.
+The `outcome-check` Python package and CLI need Python 3.11+ and the standard
+library, with no network or model calls.
 
 ## First check
+
+Install [uv](https://docs.astral.sh/uv/), then from a clone of this repository:
 
 ```sh
 uv sync --frozen
@@ -25,7 +24,7 @@ uv run outcome-check examples/checks-v3.packet.json --html report.html
 Open `report.html` directly, offline. The viewer has Cartoon, Calm, Pixel, and
 Lab themes, dark and light appearance, keyboard controls, and reduced motion.
 Exit 0 means every requirement confirmed; 1 means review is needed; 2 means
-invalid input or I/O. Examples are original CC0 synthetic, AI-assisted, non-client data.
+invalid input or I/O. Examples are original CC0 synthetic data.
 
 | State | Meaning |
 | --- | --- |
@@ -64,6 +63,11 @@ and preserves the checker's exit status.
 ```sh
 uv run python scripts/build_demo.py
 uv run python scripts/build_state_demo.py
+```
+
+The viewer checks need Node.js 22:
+
+```sh
 npm ci --ignore-scripts
 npm test
 npm run perf
@@ -75,7 +79,7 @@ synthetic refund demo. All libraries, scripts, and styles are local or embedded.
 A strict hashed CSP denies connections; imported evidence uses escaped text.
 The GPU evidence sweep runs in an optional WebGL2 worker, with a static fallback.
 
-Real offline recordings: [Cartoon](assets/demos/cartoon.mp4),
+Demo recordings: [Cartoon](assets/demos/cartoon.mp4),
 [Calm](assets/demos/calm.mp4), [Pixel](assets/demos/pixel.mp4),
 [Lab](assets/demos/lab.mp4). See [performance evidence](PERF.md) for measured
 results and the limits of automated accessibility and interaction measurements.
@@ -103,7 +107,7 @@ provides configurable scorers. Siftgrain State checks supplied, named evidence
 against explicit conditions without running any of those environments. It adds
 freshness, subject binding, and required-change checks, not independent collection
 or an alternative measure of full-task success. [Research](RESEARCH.md) records
-source dates and newer related work through October 13, 2026.
+source dates and related work.
 
 ## Limits and compatibility
 
@@ -115,11 +119,14 @@ collection accuracy, causation, or the completeness of a caller's goal.
 v0.2.x packets still load with their original semantics; migration to schema v3
 is explicit and refuses signed input. [Contract](docs/contract.md),
 [migration](MIGRATION.md), and [requirement coverage](REQUIREMENTS.md) distinguish
-implemented behavior from missing external evidence and gated publication.
+implemented behavior from missing external evidence.
 The bounded regex language deliberately rejects general expressions.
 
-[Version 0.4.0](https://pypi.org/project/outcome-check/0.4.0/) remains the published
-package. This redesign does not replace existing tags, registry bytes, or prior
-release evidence in [RELEASE_READY.md](RELEASE_READY.md). Dependabot remains off
-by owner instruction; [security settings](SECURITY_SETTINGS.md) describes optional
-owner-controlled restoration. MIT code; no adoption or production-use claim.
+MIT license.
+
+## Related
+
+Siftgrain State is part of the Siftgrain suite, alongside
+[Siftgrain Cite](https://github.com/alawein/siftgrain-cite) for human citation
+review and [Siftgrain Audit](https://github.com/alawein/siftgrain-audit) for
+evaluation completeness.
