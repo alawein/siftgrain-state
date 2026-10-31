@@ -1,2 +1,7 @@
 # Authenticated maintainer-only UI; exact click path retained in SECURITY_SETTINGS.md.
 ^https://github\.com/alawein/siftgrain-state/settings/security_analysis/?$
+
+# Historical Actions run URLs returned 404; their cause is unverified.
+^https://github\.com/alawein/outcome-check/actions/runs/37799710726/?$
+^https://github\.com/alawein/outcome-check/actions/runs/37824835131/?$
+^https://github\.com/alawein/outcome-check/actions/runs/37828214231/?$
