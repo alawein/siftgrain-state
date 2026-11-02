@@ -1,9 +1,9 @@
 # Siftgrain State
 
-Siftgrain State checks whether the evidence you supply supports an AI agent's
-requested outcome. It is for developers who evaluate agents and need to verify a
-reported result against observed state. It does not execute actions or track
-them over time.
+Siftgrain State helps developers who evaluate AI agents check whether supplied
+evidence supports a requested outcome against observed state.
+
+It does not execute actions or track them over time.
 
 ![Siftgrain State](brand/wordmark.svg)
 
