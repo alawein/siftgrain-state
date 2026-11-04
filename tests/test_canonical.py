@@ -9,12 +9,12 @@ import rfc8785
 from hypothesis import given, settings
 from hypothesis import strategies as st
 
-from outcome_check import signatures
-from outcome_check.contract import InputError
+from siftgrain_state import signatures
+from siftgrain_state.contract import InputError
 
 
 def jcs(value):
-    from outcome_check.canonical import canonicalize
+    from siftgrain_state.canonical import canonicalize
 
     return canonicalize(value)
 

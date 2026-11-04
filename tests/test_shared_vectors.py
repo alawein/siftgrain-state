@@ -5,8 +5,8 @@ from pathlib import Path
 
 import pytest
 
-from outcome_check import output
-from outcome_check.report import render_html, render_json
+from siftgrain_state import output
+from siftgrain_state.report import render_html, render_json
 
 
 def test_existing_force_and_input_alias(tmp_path):

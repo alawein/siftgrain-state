@@ -3,7 +3,7 @@ requires = ["hatchling==1.32.4"]
 build-backend = "hatchling.build"
 
 [project]
-name = "outcome-check"
+name = "siftgrain-state"
 version = "0.5.0.dev0"
 description = "Compare requested outcomes with supplied state evidence."
 readme = "README.md"
@@ -20,9 +20,9 @@ Issues = "https://github.com/alawein/siftgrain-state/issues"
 signing = ["cryptography>=44"]
 
 [project.scripts]
-outcome-check = "outcome_check.cli:main"
-outcome-convert = "outcome_check.convert:main"
-outcome-check-mcp = "outcome_check.mcp:main"
+outcome-check = "siftgrain_state.cli:main"
+outcome-convert = "siftgrain_state.convert:main"
+outcome-check-mcp = "siftgrain_state.mcp:main"
 
 [dependency-groups]
 dev = [
@@ -42,7 +42,7 @@ dev = [
 ]
 
 [tool.hatch.build.targets.wheel]
-packages = ["src/outcome_check"]
+packages = ["src/siftgrain_state"]
 
 [tool.ruff]
 line-length = 100

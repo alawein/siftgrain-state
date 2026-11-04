@@ -6,8 +6,15 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from outcome_check.contract import fields, identifier, json_value, require, timestamp, unique_pairs
-from outcome_check.core import check_packet
+from siftgrain_state.contract import (
+    fields,
+    identifier,
+    json_value,
+    require,
+    timestamp,
+    unique_pairs,
+)
+from siftgrain_state.core import check_packet
 
 SOURCE_SHA256 = "e9e6c0297660c537f83d4fd9c476ce7a9a86ecd2784874b7bfc13be598e37bfa"
 SOURCE = "https://github.com/sierra-research/tau-bench/blob/59a200c6d575d595120f1cb70fea53cef0632f6b/historical_trajectories/gpt-4o-airline.json"

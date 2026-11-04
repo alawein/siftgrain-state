@@ -27,7 +27,7 @@ def main() -> None:
             check=True,
         )
         origin = subprocess.check_output(
-            [str(python), "-c", "import outcome_check; print(outcome_check.__file__)"],
+            [str(python), "-c", "import siftgrain_state; print(siftgrain_state.__file__)"],
             cwd=root,
             env=env,
             text=True,

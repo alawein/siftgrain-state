@@ -1,6 +1,6 @@
 # Shared code maintenance
 
-src/outcome_check/output.py mirrors src/eval_audit/output.py in the sibling tool.
+src/siftgrain_state/output.py mirrors src/eval_audit/output.py in the sibling tool.
 The exact duplicated functions are same_location(left, right),
 validate_outputs(outputs, inputs, force), and atomic_write(path, content, force).
 Both are stdlib-only and have no package-specific imports. Update the two copies

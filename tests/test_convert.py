@@ -1,6 +1,6 @@
 import json
 
-from outcome_check.convert import main
+from siftgrain_state.convert import main
 
 
 def test_converter_atomic_output_and_input_identity(tmp_path):

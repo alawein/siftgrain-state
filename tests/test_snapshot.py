@@ -1,7 +1,7 @@
 import json
 from pathlib import Path
 
-from outcome_check.cli import main
+from siftgrain_state.cli import main
 
 
 def test_committed_snapshot_matches_canonical_inputs(capsys):

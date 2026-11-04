@@ -1,6 +1,6 @@
 from copy import deepcopy
 
-from outcome_check.core import check_packet
+from siftgrain_state.core import check_packet
 
 
 def test_fault_dataset_has_independent_keys_and_grouped_split():

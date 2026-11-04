@@ -113,7 +113,7 @@ Invalid signatures cannot confirm a check. Missing/unverified signatures cannot
 confirm when require_signatures=true; the same rule applies to selected baselines.
 
 `check_packet(packet, verifier=None)` accepts the SignatureVerifier protocol from
-outcome_check.signatures. Verifiers are trusted local application code, not executable
+siftgrain_state.signatures. Verifiers are trusted local application code, not executable
 plugins loaded from packet data. The provided Ed25519Verifier accepts a mapping of
 key IDs to raw 32-byte public keys and never downloads keys. Install the signing
 extra for cryptography; default core has zero dependencies. Optional sign_observation
@@ -157,7 +157,7 @@ signature is combined with algorithm, key_id and canonicalization at top level,
 then serialized and signed. Unknown profiles or algorithms are rejected. Changing
 or stripping profile metadata cannot preserve a valid v3 signature.
 
-`outcome_check.canonical.canonicalize` implements RFC 8785 serialization over
+`siftgrain_state.canonical.canonicalize` implements RFC 8785 serialization over
 finite IEEE-754 binary64 values: shortest round-trip decimal, ECMAScript's
 fixed/exponent thresholds, negative zero as 0, exact JSON control escaping,
 UTF-16 object-key ordering, and UTF-8 output without Unicode normalization.

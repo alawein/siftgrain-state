@@ -9,8 +9,8 @@ It does not execute actions or track them over time.
 
 A successful action receipt can accompany the wrong state. Siftgrain State
 shows the receipt, observation, baseline, freshness, and verdict together.
-The `outcome-check` Python package and CLI need Python 3.11+ and the standard
-library, with no network or model calls.
+The `siftgrain-state` Python package and the `outcome-check` CLI need Python
+3.11+ and the standard library, with no network or model calls.
 
 ## First check
 

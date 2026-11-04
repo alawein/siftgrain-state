@@ -3,8 +3,8 @@ from copy import deepcopy
 import pytest
 from test_outcomes import packet
 
-from outcome_check.contract import InputError, validate
-from outcome_check.core import check_packet
+from siftgrain_state.contract import InputError, validate
+from siftgrain_state.core import check_packet
 
 
 def v2(check="equal", expected="07:00", value="07:00"):

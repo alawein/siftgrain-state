@@ -4,10 +4,10 @@ from copy import deepcopy
 
 import pytest
 
-from outcome_check.cli import main
-from outcome_check.contract import InputError, load_packet, validate
-from outcome_check.core import check_packet, same_json
-from outcome_check.report import render_html
+from siftgrain_state.cli import main
+from siftgrain_state.contract import InputError, load_packet, validate
+from siftgrain_state.core import check_packet, same_json
+from siftgrain_state.report import render_html
 
 
 def packet():

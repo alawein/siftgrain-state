@@ -1,6 +1,6 @@
 import pytest
 
-from outcome_check.cli import main
+from siftgrain_state.cli import main
 
 
 def test_help(capsys):

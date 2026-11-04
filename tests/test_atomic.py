@@ -4,7 +4,7 @@ from pathlib import Path
 
 from test_outcomes import packet
 
-from outcome_check.cli import main
+from siftgrain_state.cli import main
 
 
 def test_atomic_failure_preserves_previous_output(tmp_path, monkeypatch):
@@ -39,7 +39,7 @@ def test_nonforce_creation_race_never_overwrites(tmp_path, monkeypatch):
 
 
 def test_stage_write_failure_preserves_target_and_cleans_stage(tmp_path, monkeypatch):
-    from outcome_check import output
+    from siftgrain_state import output
 
     original = output.tempfile.NamedTemporaryFile
     source = tmp_path / "packet.json"

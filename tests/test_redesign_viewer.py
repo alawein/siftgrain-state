@@ -1,7 +1,7 @@
 from test_outcomes import packet
 
-from outcome_check.core import check_packet
-from outcome_check.report import render_html
+from siftgrain_state.core import check_packet
+from siftgrain_state.report import render_html
 
 
 def test_viewer_themes_timeline_and_csp():

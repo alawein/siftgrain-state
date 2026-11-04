@@ -3,7 +3,7 @@
 from copy import deepcopy
 from typing import Any
 
-from outcome_check.contract import require, validate
+from siftgrain_state.contract import require, validate
 
 
 def convert(

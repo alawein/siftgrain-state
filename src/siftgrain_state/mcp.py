@@ -4,8 +4,8 @@ import json
 import sys
 from typing import BinaryIO, TextIO
 
-from outcome_check.contract import InputError, invalid_constant, unique_pairs
-from outcome_check.core import check_packet
+from siftgrain_state.contract import InputError, invalid_constant, unique_pairs
+from siftgrain_state.core import check_packet
 
 
 class ProtocolError(ValueError):

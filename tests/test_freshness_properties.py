@@ -4,8 +4,8 @@ from hypothesis import given
 from hypothesis import strategies as st
 from test_outcomes import packet
 
-from outcome_check.contract import age_seconds
-from outcome_check.core import check_packet
+from siftgrain_state.contract import age_seconds
+from siftgrain_state.core import check_packet
 
 
 @given(st.integers(0, 120), st.integers(0, 999999999), st.integers(-23, 23))

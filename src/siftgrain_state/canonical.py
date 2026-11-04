@@ -3,7 +3,7 @@
 import json
 import math
 
-from outcome_check.contract import InputError, require
+from siftgrain_state.contract import InputError, require
 
 
 def number(value: int | float) -> str:

@@ -6,7 +6,7 @@ from collections.abc import Mapping
 from pathlib import Path
 from typing import Protocol
 
-from outcome_check.contract import InputError, require, unique_pairs
+from siftgrain_state.contract import InputError, require, unique_pairs
 
 
 class SignatureVerifier(Protocol):
@@ -52,7 +52,7 @@ def signing_payload(observation: dict) -> bytes:
     metadata = {"algorithm": signature["algorithm"], "key_id": signature["key_id"]}
     serializer = canonical_json
     if profile is not None:
-        from outcome_check.canonical import canonicalize
+        from siftgrain_state.canonical import canonicalize
 
         metadata["canonicalization"] = profile
         serializer = canonicalize

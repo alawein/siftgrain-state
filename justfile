@@ -19,7 +19,7 @@ build:
 
 # Everything the pull request checks run, plus the build.
 typecheck:
-    uv run mypy src/outcome_check
+    uv run mypy src/siftgrain_state
 
 schemas:
     uv run python scripts/validate_schemas.py

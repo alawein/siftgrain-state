@@ -6,7 +6,7 @@ import sys
 
 import pytest
 
-from outcome_check.mcp import serve
+from siftgrain_state.mcp import serve
 
 
 def reply(value):
@@ -41,7 +41,7 @@ def wire_ping(request_id):
 
 def native_exchange(data, encoding):
     return subprocess.run(
-        [sys.executable, "-m", "outcome_check.mcp"],
+        [sys.executable, "-m", "siftgrain_state.mcp"],
         input=data,
         capture_output=True,
         timeout=10,

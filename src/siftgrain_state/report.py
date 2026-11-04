@@ -4,7 +4,7 @@ import json
 import re
 from fractions import Fraction
 
-from outcome_check.contract import InputError, age_seconds
+from siftgrain_state.contract import InputError, age_seconds
 
 
 def render_json(report: dict) -> str:
@@ -349,8 +349,8 @@ def render_html(
         '<p><a href="https://github.com/alawein/siftgrain-state">Source and installation</a>'
         "</p></main></body></html>"
     )
-    from outcome_check._tokens import TOKENS
-    from outcome_check.viewer import enhance
+    from siftgrain_state._tokens import TOKENS
+    from siftgrain_state.viewer import enhance
 
     # Unsigned JSON may contain lone surrogates. Show their escapes in every
     # display surface, including the enhanced timeline, without changing data.

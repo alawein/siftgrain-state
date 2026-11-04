@@ -2,10 +2,10 @@ import argparse
 import sys
 from pathlib import Path
 
-from outcome_check.contract import InputError, load_packet
-from outcome_check.core import check_packet
-from outcome_check.output import atomic_write, validate_outputs
-from outcome_check.report import render_html, render_json
+from siftgrain_state.contract import InputError, load_packet
+from siftgrain_state.core import check_packet
+from siftgrain_state.output import atomic_write, validate_outputs
+from siftgrain_state.report import render_html, render_json
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -30,7 +30,7 @@ def main(argv: list[str] | None = None) -> int:
         packet, digest = load_packet(args.packet)
         verifier = None
         if args.public_keys is not None:
-            from outcome_check.signatures import load_public_keys
+            from siftgrain_state.signatures import load_public_keys
 
             verifier = load_public_keys(args.public_keys)
         report = check_packet(packet, verifier) | {"input_sha256": digest}

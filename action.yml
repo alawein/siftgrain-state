@@ -20,4 +20,4 @@ runs:
         args=()
         if [ -n "$HTML_REPORT" ]; then args+=(--html "$HTML_REPORT"); fi
         args+=(-- "$PACKET")
-        PYTHONPATH="$GITHUB_ACTION_PATH/src" python -c 'import sys; from outcome_check.cli import main; assert sys.version_info >= (3,11); raise SystemExit(main())' "${args[@]}"
+        PYTHONPATH="$GITHUB_ACTION_PATH/src" python -c 'import sys; from siftgrain_state.cli import main; assert sys.version_info >= (3,11); raise SystemExit(main())' "${args[@]}"

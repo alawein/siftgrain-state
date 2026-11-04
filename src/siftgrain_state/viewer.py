@@ -5,7 +5,7 @@ import hashlib
 import html
 import json
 
-from outcome_check._brand import LOGO
+from siftgrain_state._brand import LOGO
 
 STYLE = """
 body{background:var(--bg);color:var(--ink)}
