@@ -1,5 +1,5 @@
-from outcome_check.contract import age_seconds, validate
-from outcome_check.signatures import SignatureVerifier, signature_status
+from siftgrain_state.contract import age_seconds, validate
+from siftgrain_state.signatures import SignatureVerifier, signature_status
 
 
 def same_json(left: object, right: object) -> bool:
@@ -130,7 +130,7 @@ def compare(requirement: dict, value) -> tuple[str, str]:
     elif check == "contains":
         matches = type(value) is list and any(same_json(item, expected) for item in value)
     elif check == "regex":
-        from outcome_check.checks import safe_regex
+        from siftgrain_state.checks import safe_regex
 
         matches = (
             type(value) is str

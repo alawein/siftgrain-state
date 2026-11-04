@@ -7,7 +7,7 @@ import shutil
 import struct
 import subprocess
 
-from outcome_check.canonical import canonicalize
+from siftgrain_state.canonical import canonicalize
 
 NODE_VERSION = "v22.23.2"
 

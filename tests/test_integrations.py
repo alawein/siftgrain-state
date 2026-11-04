@@ -4,10 +4,10 @@ from copy import deepcopy
 
 import pytest
 
-from outcome_check.adapters import convert
-from outcome_check.contract import InputError
-from outcome_check.core import check_packet
-from outcome_check.mcp import serve
+from siftgrain_state.adapters import convert
+from siftgrain_state.contract import InputError
+from siftgrain_state.core import check_packet
+from siftgrain_state.mcp import serve
 
 
 def source():

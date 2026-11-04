@@ -1130,54 +1130,6 @@ wheels = [
 ]
 
 [[package]]
-name = "outcome-check"
-version = "0.5.0.dev0"
-source = { editable = "." }
-
-[package.optional-dependencies]
-signing = [
-    { name = "cryptography" },
-]
-
-[package.dev-dependencies]
-dev = [
-    { name = "build" },
-    { name = "cryptography" },
-    { name = "hatchling" },
-    { name = "hypothesis" },
-    { name = "jsonschema" },
-    { name = "mypy" },
-    { name = "pip-audit" },
-    { name = "pypi-attestations" },
-    { name = "pyright" },
-    { name = "pytest" },
-    { name = "rfc8785" },
-    { name = "ruff" },
-    { name = "twine" },
-]
-
-[package.metadata]
-requires-dist = [{ name = "cryptography", marker = "extra == 'signing'", specifier = ">=44" }]
-provides-extras = ["signing"]
-
-[package.metadata.requires-dev]
-dev = [
-    { name = "build", specifier = ">=1.6.1" },
-    { name = "cryptography", specifier = ">=44" },
-    { name = "hatchling", specifier = "==1.32.4" },
-    { name = "hypothesis", specifier = ">=6" },
-    { name = "jsonschema", specifier = ">=4" },
-    { name = "mypy", specifier = ">=1" },
-    { name = "pip-audit", specifier = ">=2.10.1" },
-    { name = "pypi-attestations", specifier = "==0.0.30" },
-    { name = "pyright", specifier = "==1.1.408" },
-    { name = "pytest", specifier = ">=8" },
-    { name = "rfc8785", specifier = "==0.1.4" },
-    { name = "ruff", specifier = ">=0.8" },
-    { name = "twine", specifier = ">=7.0.0" },
-]
-
-[[package]]
 name = "packageurl-python"
 version = "0.17.6"
 source = { registry = "https://pypi.org/simple" }
@@ -1855,6 +1807,54 @@ source = { registry = "https://pypi.org/simple" }
 sdist = { url = "https://files.pythonhosted.org/packages/81/d4/f9323507144693d869f30f13694035438ab6642153b94e3057945cf0584f/securesystemslib-1.5.1.tar.gz", hash = "sha256:4b8d00abd93707ead10b69eb2b8582376a1364de3b0a71077de534c2ef4985e0", size = 947087, upload-time = "2026-09-04T06:55:32.066Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/38/fc/c71335a5046d46bf3b761a8c7fa092b40a7721429a5613538f0a28ae80a6/securesystemslib-1.5.1-py3-none-any.whl", hash = "sha256:ada8bdf817da29ece4ba91654f6a162ce7cfbadbc3ae3f840f7313f9d22675de", size = 876390, upload-time = "2026-09-04T06:55:30.393Z" },
+]
+
+[[package]]
+name = "siftgrain-state"
+version = "0.5.0.dev0"
+source = { editable = "." }
+
+[package.optional-dependencies]
+signing = [
+    { name = "cryptography" },
+]
+
+[package.dev-dependencies]
+dev = [
+    { name = "build" },
+    { name = "cryptography" },
+    { name = "hatchling" },
+    { name = "hypothesis" },
+    { name = "jsonschema" },
+    { name = "mypy" },
+    { name = "pip-audit" },
+    { name = "pypi-attestations" },
+    { name = "pyright" },
+    { name = "pytest" },
+    { name = "rfc8785" },
+    { name = "ruff" },
+    { name = "twine" },
+]
+
+[package.metadata]
+requires-dist = [{ name = "cryptography", marker = "extra == 'signing'", specifier = ">=44" }]
+provides-extras = ["signing"]
+
+[package.metadata.requires-dev]
+dev = [
+    { name = "build", specifier = ">=1.6.1" },
+    { name = "cryptography", specifier = ">=44" },
+    { name = "hatchling", specifier = "==1.32.4" },
+    { name = "hypothesis", specifier = ">=6" },
+    { name = "jsonschema", specifier = ">=4" },
+    { name = "mypy", specifier = ">=1" },
+    { name = "pip-audit", specifier = ">=2.10.1" },
+    { name = "pypi-attestations", specifier = "==0.0.30" },
+    { name = "pyright", specifier = "==1.1.408" },
+    { name = "pytest", specifier = ">=8" },
+    { name = "rfc8785", specifier = "==0.1.4" },
+    { name = "ruff", specifier = ">=0.8" },
+    { name = "twine", specifier = ">=7.0.0" },
 ]
 
 [[package]]

@@ -13,7 +13,7 @@ from collections import Counter
 from copy import deepcopy
 from pathlib import Path
 
-from outcome_check.core import check_packet, same_json
+from siftgrain_state.core import check_packet, same_json
 
 ROOT = Path(__file__).resolve().parent
 DATA = ROOT / "data-v1"

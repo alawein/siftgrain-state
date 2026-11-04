@@ -3,7 +3,7 @@
 import gzip
 from pathlib import Path
 
-from outcome_check._tokens import TOKENS
+from siftgrain_state._tokens import TOKENS
 
 
 def main():

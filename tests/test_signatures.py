@@ -4,9 +4,9 @@ from copy import deepcopy
 import pytest
 from test_checks_v2 import baseline_packet, v2
 
-from outcome_check.contract import InputError
-from outcome_check.core import check_packet
-from outcome_check.signatures import (
+from siftgrain_state.contract import InputError
+from siftgrain_state.core import check_packet
+from siftgrain_state.signatures import (
     Ed25519Verifier,
     canonical_json,
     sign_observation,
@@ -102,8 +102,8 @@ def test_verifier_runs_once_per_observation_and_report_agrees():
 
 
 def test_v3_signing_profile_and_signed_migration():
-    from outcome_check.contract import migrate_to_v3
-    from outcome_check.signatures import signing_payload
+    from siftgrain_state.contract import migrate_to_v3
+    from siftgrain_state.signatures import signing_payload
 
     p, verifier = signed_packet()
     with pytest.raises(InputError, match="re-sign"):
@@ -123,7 +123,7 @@ def test_v3_signing_profile_and_signed_migration():
     "change", ["profile", "remove_profile", "algorithm", "key_id", "value", "timestamp", "subject"]
 )
 def test_v3_tampering(change):
-    from outcome_check.contract import migrate_to_v3
+    from siftgrain_state.contract import migrate_to_v3
 
     _, verifier = signed_packet()
     p = migrate_to_v3(v2(expected=1.5, value=1.5))
@@ -169,7 +169,7 @@ def test_v2_cannot_opt_in_to_float_profile():
 def test_unsigned_migrations_preserve_source():
     from test_outcomes import packet
 
-    from outcome_check.contract import migrate_to_v3
+    from siftgrain_state.contract import migrate_to_v3
 
     for source in (packet(), v2()):
         before = deepcopy(source)

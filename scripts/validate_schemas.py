@@ -5,8 +5,8 @@ from pathlib import Path
 
 from jsonschema import Draft202012Validator
 
-from outcome_check.contract import validate
-from outcome_check.core import check_packet
+from siftgrain_state.contract import validate
+from siftgrain_state.core import check_packet
 
 
 def main() -> None:
@@ -21,7 +21,7 @@ def main() -> None:
         value = json.loads(path.read_text(encoding="utf-8"))
         if path.name == "public-keys.json":
             Draft202012Validator(schemas[(2, "public-keys")]).validate(value)
-            from outcome_check.signatures import load_public_keys
+            from siftgrain_state.signatures import load_public_keys
 
             load_public_keys(path)
             count += 1
@@ -37,7 +37,7 @@ def main() -> None:
             validate(value)
             verifier = None
             if value.get("require_signatures"):
-                from outcome_check.signatures import load_public_keys
+                from siftgrain_state.signatures import load_public_keys
 
                 verifier = load_public_keys(root / "examples" / "public-keys.json")
             report = check_packet(value, verifier)

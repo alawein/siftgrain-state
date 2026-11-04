@@ -5,10 +5,10 @@ import json
 import sys
 from pathlib import Path
 
-from outcome_check.adapters import convert
-from outcome_check.contract import InputError, invalid_constant, require, unique_pairs
-from outcome_check.output import atomic_write, validate_outputs
-from outcome_check.report import render_json
+from siftgrain_state.adapters import convert
+from siftgrain_state.contract import InputError, invalid_constant, require, unique_pairs
+from siftgrain_state.output import atomic_write, validate_outputs
+from siftgrain_state.report import render_json
 
 
 def read_json(path: Path):

@@ -231,7 +231,7 @@ def validate_v2(packet: dict) -> None:
                 f"reversed range at {where}",
             )
         if check == "regex":
-            from outcome_check.checks import safe_regex
+            from siftgrain_state.checks import safe_regex
 
             safe_regex(row.get("expected"))
         legacy["requirements"].append(

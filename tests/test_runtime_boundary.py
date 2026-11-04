@@ -9,9 +9,9 @@ from pathlib import Path
 import pytest
 from test_outcomes import packet
 
-from outcome_check.cli import main
-from outcome_check.core import check_packet
-from outcome_check.report import render_html, render_json
+from siftgrain_state.cli import main
+from siftgrain_state.core import check_packet
+from siftgrain_state.report import render_html, render_json
 
 
 def test_runtime_cannot_collect_execute_or_write_other_paths(tmp_path, monkeypatch, capsys):
@@ -31,8 +31,8 @@ def test_runtime_cannot_collect_execute_or_write_other_paths(tmp_path, monkeypat
     check_packet(packet())
     render_html(check_packet(packet()), packet())
     render_json(check_packet(packet()))
-    from outcome_check.contract import migrate_to_v3
-    from outcome_check.signatures import sign_observation
+    from siftgrain_state.contract import migrate_to_v3
+    from siftgrain_state.signatures import sign_observation
 
     v3 = migrate_to_v3(unsigned)
     v3["observations"][0]["state"]["float"] = 1.5
@@ -91,7 +91,7 @@ def test_runtime_cannot_collect_execute_or_write_other_paths(tmp_path, monkeypat
 
 
 def test_packet_cannot_specify_executor_or_collector():
-    from outcome_check.contract import InputError
+    from siftgrain_state.contract import InputError
 
     p = packet()
     p["collector"] = "https://example.invalid"

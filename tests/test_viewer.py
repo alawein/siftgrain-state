@@ -10,10 +10,10 @@ from pathlib import Path
 import pytest
 from test_outcomes import packet as make_packet
 
-from outcome_check.cli import main
-from outcome_check.contract import InputError, validate
-from outcome_check.core import check_packet
-from outcome_check.report import render_html, render_json
+from siftgrain_state.cli import main
+from siftgrain_state.contract import InputError, validate
+from siftgrain_state.core import check_packet
+from siftgrain_state.report import render_html, render_json
 
 
 def _download_hrefs(page):

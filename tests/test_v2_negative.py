@@ -4,9 +4,9 @@ import pytest
 from test_checks_v2 import baseline_packet, v2
 from test_signatures import signed_packet
 
-from outcome_check.cli import main
-from outcome_check.contract import InputError, validate
-from outcome_check.core import check_packet
+from siftgrain_state.cli import main
+from siftgrain_state.contract import InputError, validate
+from siftgrain_state.core import check_packet
 
 
 @pytest.mark.parametrize(

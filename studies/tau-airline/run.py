@@ -6,7 +6,7 @@ import json
 from collections import Counter
 from pathlib import Path
 
-from outcome_check.core import check_packet
+from siftgrain_state.core import check_packet
 
 SOURCE_SHA256 = "e9e6c0297660c537f83d4fd9c476ce7a9a86ecd2784874b7bfc13be598e37bfa"
 FIELDS = {

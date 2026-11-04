@@ -7,7 +7,7 @@ from pathlib import Path
 
 from test_outcomes import packet
 
-from outcome_check.mcp import serve
+from siftgrain_state.mcp import serve
 
 
 def test_mcp_has_no_network_process_or_file_side_effects(monkeypatch):

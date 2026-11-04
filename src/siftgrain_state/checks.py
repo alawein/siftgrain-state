@@ -2,7 +2,7 @@
 
 import re
 
-from outcome_check.contract import require
+from siftgrain_state.contract import require
 
 
 def safe_regex(pattern: object) -> re.Pattern[str]:
@@ -42,6 +42,6 @@ def safe_regex(pattern: object) -> re.Pattern[str]:
     try:
         return re.compile(pattern)
     except re.error as exc:
-        from outcome_check.contract import InputError
+        from siftgrain_state.contract import InputError
 
         raise InputError("invalid regex") from exc
