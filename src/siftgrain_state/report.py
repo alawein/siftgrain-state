@@ -117,6 +117,7 @@ def render_html(
     baseline_observation_id: str | None = None,
     demo_title: str | None = None,
     demo_note: str | None = None,
+    synthetic: bool = False,
     download_links: dict[str, str] | None = None,
     download_files: dict[str, bytes] | None = None,
 ) -> str:
@@ -141,6 +142,9 @@ def render_html(
         if demo_note
         else ""
     )
+    if download_links is None:
+        download_links = {"Download report JSON": "report.json"}
+        download_files = {"report.json": render_json(report).encode("utf-8")}
     downloads = ""
     for label, filename in (download_links or {}).items():
         if not isinstance(filename, str) or not re.fullmatch(
@@ -161,6 +165,46 @@ def render_html(
         )
     if downloads:
         downloads = f'<nav class="downloads" aria-label="Evidence downloads">{downloads}</nav>'
+    counts = report.get("counts", {})
+    needs_review = report.get("exit_code") != 0
+    summary = "Review needed." if needs_review else "Every supplied requirement is confirmed."
+    steps = []
+    for status, instruction in (
+        (
+            "contradicted",
+            "Compare the observed value and required action with the requested condition.",
+        ),
+        (
+            "unobserved",
+            "Supply eligible evidence: check missing references, subject, "
+            "path, time and signatures.",
+        ),
+        (
+            "unconfirmed",
+            "Supply a valid baseline and an observed required change; "
+            "target equality alone is insufficient.",
+        ),
+    ):
+        if counts.get(status, 0):
+            steps.append(f"<li><strong>{status} ({counts[status]})</strong>: {instruction}</li>")
+    scope = "Synthetic example" if synthetic else "Supplied-input report"
+    first_use = (
+        '<section aria-label="Result and next action">'
+        "<h2>Does supplied observation satisfy requested outcome?</h2>"
+        f"<p>{scope}. <strong>{summary}</strong></p>"
+        + (
+            "<ul>" + "".join(steps) + "</ul>"
+            if steps
+            else "<p>Inspect each requirement and its evidence before using this result.</p>"
+        )
+        + "<p>Invalid input produces exit 2 and no verdict; fix the reported row or file first.</p>"
+        "<details><summary>Check your own inputs</summary>"
+        "<p>Supply your requirements, observations, comparison time and any required baselines "
+        "or action receipts in a packet. See the repository input contract.</p>"
+        "<pre>uv run outcome-check packet.json --html report.html --json report.json</pre>"
+        "<p>Confirmed evidence does not authenticate execution or establish causation.</p>"
+        "</details></section>"
+    )
     comparison = (
         '<p class="comparison"><strong>Supplied comparison time:</strong> '
         f"{html.escape(str(as_of or 'not supplied'))}</p>"
@@ -331,6 +375,7 @@ def render_html(
         '</style></head><body><main><p class="eyebrow">LOCAL EVIDENCE / '
         "REFERENCED OBSERVATIONS</p>"
         f"<h1>{title}</h1><p>Checks supplied evidence, not authenticated execution.</p>"
+        + first_use
         + downloads
         + '<div class="cards">'
         + cards

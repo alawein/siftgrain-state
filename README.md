@@ -21,6 +21,15 @@ uv sync --frozen
 uv run outcome-check examples/checks-v3.packet.json --html report.html
 ```
 
+For your own check, write a packet with explicit requirements, observations and
+comparison time, then run `uv run outcome-check packet.json --html report.html
+--json report.json`. Use baselines only when the requirement needs them. The
+[packet contract](docs/contract.md) defines each field.
+
+HTML includes the exact supplied packet, evidence and reasons as downloadable
+local data. Review its contents before sharing. Input downloads retain the bytes
+bound by the displayed SHA-256. Nothing is uploaded.
+
 Open `report.html` directly, offline. The viewer has Cartoon, Calm, Pixel, and
 Lab themes, dark and light appearance, keyboard controls, and reduced motion.
 Exit 0 means every requirement confirmed; 1 means review is needed; 2 means

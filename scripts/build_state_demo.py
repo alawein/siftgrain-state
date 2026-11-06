@@ -12,15 +12,16 @@ def main():
     packet, digest = load_packet(path)
     report = check_packet(packet) | {
         "input_sha256": digest,
-        "provenance": "Synthetic, AI-assisted, non-client; CC0",
+        "provenance": "Synthetic, non-client; CC0",
     }
     target = Path("site")
     target.mkdir(exist_ok=True)
     page = render_html(
         report,
         packet,
+        synthetic=True,
         demo_title="Siftgrain State: four evidence states",
-        demo_note="Synthetic, AI-assisted, non-client. Baseline protects against a no-op claim.",
+        demo_note="Synthetic, non-client. Baseline protects against a no-op claim.",
         download_links={"Packet": "state.packet.json", "JSON report": "state.report.json"},
         download_files={
             "state.packet.json": path.read_bytes(),
