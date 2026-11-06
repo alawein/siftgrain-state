@@ -331,6 +331,9 @@ def render_html(
         "body{margin:0;background:#f4f6f5;color:#142c2a;font:17px/1.6 system-ui;"
         "-webkit-tap-highlight-color:transparent}"
         "main{max-width:1280px;margin:auto;padding:40px 32px}"
+        ".suite-nav{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:12px}"
+        ".suite-nav a{display:inline-block;padding:8px 12px;font-weight:650}"
+        ".suite-nav a[aria-current]{text-decoration:underline;text-underline-offset:4px}"
         "h1{font-size:2.8rem;line-height:1.15;margin:12px 0;text-wrap:balance}"
         "h2,h3{text-wrap:balance}"
         ".eyebrow{letter-spacing:.12em;font-size:.85rem}"
@@ -372,7 +375,12 @@ def render_html(
         "tbody tr{grid-template-columns:repeat(2,minmax(0,1fr))}"
         ".identity{grid-column:1/-1}.st{grid-column:1/-1;border-top:1px solid #e1eae6}"
         ".reason{grid-column:1/-1}td{padding:12px;font-size:.9rem}}"
-        '</style></head><body><main><p class="eyebrow">LOCAL EVIDENCE / '
+        '</style></head><body><main id="state-report" tabindex="-1">'
+        '<nav class="suite-nav" aria-label="Siftgrain tools">'
+        '<a href="https://alawein.github.io/siftgrain-audit/" tabindex="0">Audit</a>'
+        '<a href="#state-report" tabindex="0" aria-current="page">State</a>'
+        '<a href="https://alawein.github.io/siftgrain-cite/" tabindex="0">Cite</a></nav>'
+        '<p class="eyebrow">LOCAL EVIDENCE / '
         "REFERENCED OBSERVATIONS</p>"
         f"<h1>{title}</h1><p>Checks supplied evidence, not authenticated execution.</p>"
         + first_use
