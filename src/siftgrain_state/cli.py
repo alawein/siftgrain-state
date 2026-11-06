@@ -1,4 +1,5 @@
 import argparse
+import hashlib
 import sys
 from pathlib import Path
 
@@ -10,7 +11,7 @@ from siftgrain_state.report import render_html, render_json
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(
-        description="Check supplied agent outcome receipts.",
+        description="Does supplied observation satisfy requested outcome?",
         epilog=(
             "packet shape: schema_version 1 with as_of, requirements, actions, "
             "observations; see docs/contract.md. "
@@ -34,7 +35,30 @@ def main(argv: list[str] | None = None) -> int:
 
             verifier = load_public_keys(args.public_keys)
         report = check_packet(packet, verifier) | {"input_sha256": digest}
-        targets = [(args.json, render_json(report)), (args.html, render_html(report, packet))]
+        files = None
+        if args.html is not None:
+            with args.packet.open("rb") as stream:
+                raw = stream.read(5 * 1024 * 1024 + 1)
+            if hashlib.sha256(raw).hexdigest() != digest:
+                raise InputError("input changed while preparing HTML download")
+            files = {"packet.json": raw, "report.json": render_json(report).encode("utf-8")}
+        targets = [
+            (args.json, render_json(report)),
+            (
+                args.html,
+                render_html(
+                    report,
+                    packet,
+                    download_links={
+                        "Download supplied packet": "packet.json",
+                        "Download report JSON": "report.json",
+                    }
+                    if files
+                    else None,
+                    download_files=files,
+                ),
+            ),
+        ]
         outputs = [path for path, content in targets if path is not None]
         inputs = [args.packet] + ([args.public_keys] if args.public_keys is not None else [])
         validate_outputs(outputs, inputs, args.force)

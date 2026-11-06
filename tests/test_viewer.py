@@ -306,7 +306,7 @@ def test_demo_context_is_explicit_escaped_and_downloads_are_local_files():
         report,
         p,
         demo_title="Synthetic refund <script>alert(1)</script>",
-        demo_note="Synthetic, AI-assisted, non-client <b>example</b>",
+        demo_note="Synthetic, non-client <b>example</b>",
         download_links={
             "Packet <img>": "acceptance.json",
             "Report": "acceptance-report.json",
@@ -381,7 +381,7 @@ def test_build_demo_keeps_alarm_snapshot_and_exports_acceptance(tmp_path, monkey
     site = tmp_path / "site"
     alarm_snapshot = json.loads((root / "examples" / "report.json").read_text(encoding="utf-8"))
     assert json.loads((site / "report.json").read_text(encoding="utf-8")) == alarm_snapshot | {
-        "provenance": "Synthetic, AI-assisted, non-client"
+        "provenance": "Synthetic, non-client"
     }
     packet_bytes = (examples / "acceptance.json").read_bytes()
     assert (site / "acceptance.json").read_bytes() == packet_bytes
@@ -391,7 +391,7 @@ def test_build_demo_keeps_alarm_snapshot_and_exports_acceptance(tmp_path, monkey
     report = json.loads((site / "acceptance-report.json").read_text(encoding="utf-8"))
     assert report["input_sha256"] == hashlib.sha256(packet_bytes).hexdigest()
     assert report["counts"] == {"confirmed": 1, "contradicted": 1, "unobserved": 2}
-    assert report["provenance"] == "Synthetic, AI-assisted, non-client; original CC0 example"
+    assert report["provenance"] == "Synthetic, non-client; original CC0 example"
     assert set(report) == {
         "schema_version",
         "results",
@@ -461,7 +461,7 @@ def test_pages_build_exports_all_demos_with_exact_evidence(tmp_path, monkeypatch
     assert report["exit_code"] == 1
     page = (site / "state.html").read_text(encoding="utf-8")
     assert "Siftgrain State: four evidence states" in page
-    assert "Synthetic, AI-assisted, non-client" in page
+    assert "Synthetic, non-client" in page
     links = _download_hrefs(page)
     assert set(links) == {"state.packet.json", "state.report.json"}
     for filename, href in links.items():
@@ -492,3 +492,28 @@ def test_v2_card_shows_its_required_baseline_value():
     p = baseline_packet()
     page = render_html(check_packet(p), p).split("<h2>Inspectable report</h2>")[0]
     assert "observation before; observed at" in page
+
+
+def test_cli_report_downloads_exact_packet_and_result(tmp_path):
+    source = tmp_path / "packet.json"
+    source.write_bytes((json.dumps(make_packet(), ensure_ascii=False, indent=1) + "\r\n").encode())
+    target = tmp_path / "report.html"
+    expected = check_packet(make_packet())["exit_code"]
+    assert main([str(source), "--html", str(target)]) == expected
+    page = target.read_text(encoding="utf-8")
+    links = _download_hrefs(page)
+    payload = base64.b64decode(links["packet.json"].split(",", 1)[1])
+    assert payload == source.read_bytes()
+    assert hashlib.sha256(payload).hexdigest() in page
+    result = json.loads(base64.b64decode(links["report.json"].split(",", 1)[1]))
+    assert result["exit_code"] == expected
+    assert "Does supplied observation satisfy requested outcome?" in page
+    assert "Supplied-input report" in page
+    assert "Check your own inputs" in page
+
+
+def test_custom_title_does_not_turn_supplied_data_into_synthetic():
+    p = make_packet()
+    page = render_html(check_packet(p), p, demo_title="My own run")
+    assert "Supplied-input report" in page
+    assert "Synthetic example" not in page
