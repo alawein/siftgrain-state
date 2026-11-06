@@ -241,8 +241,8 @@ Replay timeline</button>
     page = page.replace('<meta charset="utf-8">', '<meta charset="utf-8">' + policy, 1)
     page = page.replace("</head>", head + "</head>")
     page = page.replace(
-        "<p>Checks supplied evidence, not authenticated execution.</p>",
-        "<p>Checks supplied evidence, not authenticated execution.</p>" + controls,
+        '<div class="cards">',
+        controls + '<div class="cards">',
         1,
     )
     page = page.replace(

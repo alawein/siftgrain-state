@@ -22,7 +22,14 @@ for(const [name,engine] of Object.entries({chromium,firefox,webkit})){
   });
   await page.goto(url,{waitUntil:'domcontentloaded'});await page.waitForTimeout(200);
   assert.equal(await page.locator('html').getAttribute('data-theme'),'dark');
-  await page.keyboard.press('Tab');assert.equal(await page.locator(':focus').getAttribute('id'),'vibe');
+  await page.locator('.suite-nav a').first().focus();
+  for(const label of ['Audit','State','Cite']){
+    assert.equal(await page.locator(':focus').textContent(),label);
+    assert.notEqual(await page.locator(':focus').evaluate(e=>getComputedStyle(e).outlineStyle),'none');
+    if(label!=='Cite') await page.keyboard.press('Tab');
+  }
+  assert.equal(await page.locator('.suite-nav [aria-current="page"]').textContent(),'State');
+  await page.locator('#vibe').focus();assert.equal(await page.locator(':focus').getAttribute('id'),'vibe');
   assert.notEqual(await page.locator('#vibe').evaluate(e=>getComputedStyle(e).outlineStyle),'none');
   await page.keyboard.press('Tab');assert.equal(await page.locator(':focus').getAttribute('id'),'appearance');
   await page.keyboard.press('Tab');assert.equal(await page.locator(':focus').getAttribute('id'),'pause-motion');

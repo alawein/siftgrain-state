@@ -4,6 +4,18 @@ from siftgrain_state.core import check_packet
 from siftgrain_state.report import render_html
 
 
+def test_suite_navigation_is_present_in_generated_reports():
+    p = packet()
+    page = render_html(check_packet(p), p)
+    assert '<nav class="suite-nav" aria-label="Siftgrain tools">' in page
+    for tool in ("audit", "cite"):
+        assert f"https://alawein.github.io/siftgrain-{tool}/" in page
+    assert 'href="#state-report" tabindex="0" aria-current="page"' in page
+    assert 'aria-current="page">State</a>' in page
+    assert page.count('aria-current="page"') == 1
+    assert page.index('aria-label="Result and next action"') < page.index('class="toolbar"')
+
+
 def test_viewer_themes_timeline_and_csp():
     p = packet()
     page = render_html(check_packet(p), p)
