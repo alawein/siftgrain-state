@@ -24,21 +24,21 @@ concurrency:
 
 jobs:
   run-markdown-lint:
-    uses: alawein/.github/.github/workflows/lint-markdown.yml@ebdb5b18e4e03a0a9a91ffdd4374dac8edf2ff6f # reviewed main
+    uses: alawein/.github/.github/workflows/lint-markdown.yml@f5dbd4d7656e286e20d2aa24463253c32a56521b # v1.4.0
 
   run-link-check:
-    uses: alawein/.github/.github/workflows/check-links.yml@ebdb5b18e4e03a0a9a91ffdd4374dac8edf2ff6f # reviewed main
+    uses: alawein/.github/.github/workflows/check-links.yml@f5dbd4d7656e286e20d2aa24463253c32a56521b # v1.4.0
 
   run-actionlint:
-    uses: alawein/.github/.github/workflows/lint-actions.yml@ebdb5b18e4e03a0a9a91ffdd4374dac8edf2ff6f # reviewed main
+    uses: alawein/.github/.github/workflows/lint-actions.yml@f5dbd4d7656e286e20d2aa24463253c32a56521b # v1.4.0
 
   run-pr-title:
     permissions:
       pull-requests: read
-    uses: alawein/.github/.github/workflows/pr-title.yml@ebdb5b18e4e03a0a9a91ffdd4374dac8edf2ff6f # reviewed main
+    uses: alawein/.github/.github/workflows/pr-title.yml@f5dbd4d7656e286e20d2aa24463253c32a56521b # v1.4.0
 
   run-python-ci:
-    uses: alawein/.github/.github/workflows/python-ci.yml@ebdb5b18e4e03a0a9a91ffdd4374dac8edf2ff6f # reviewed main
+    uses: alawein/.github/.github/workflows/python-ci.yml@f5dbd4d7656e286e20d2aa24463253c32a56521b # v1.4.0
     with:
       python-version: "3.13"
       installer: uv
@@ -48,7 +48,7 @@ jobs:
   markdown-lint:
     needs: [run-markdown-lint]
     if: ${{ always() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     permissions: {}
     steps:
@@ -60,7 +60,7 @@ jobs:
   link-check:
     needs: [run-link-check]
     if: ${{ always() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     permissions: {}
     steps:
@@ -72,7 +72,7 @@ jobs:
   actionlint:
     needs: [run-actionlint]
     if: ${{ always() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     permissions: {}
     steps:
@@ -84,7 +84,7 @@ jobs:
   pr-title:
     needs: [run-pr-title]
     if: ${{ always() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     permissions: {}
     steps:
@@ -102,7 +102,7 @@ jobs:
   python-ci:
     needs: [run-python-ci]
     if: ${{ always() }}
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 1
     permissions: {}
     steps:
@@ -113,7 +113,7 @@ jobs:
 
 
   product-validation:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     strategy:
       fail-fast: false
@@ -144,7 +144,7 @@ jobs:
         run: uv run pip-audit --local
 
   viewer-validation:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     env:
       UV_PYTHON: "3.11"

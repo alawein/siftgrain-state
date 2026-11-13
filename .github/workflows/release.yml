@@ -13,7 +13,7 @@ concurrency:
 jobs:
   build:
     if: github.repository == 'alawein/siftgrain-state'
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 20
     permissions:
       contents: read
@@ -62,7 +62,7 @@ jobs:
           retention-days: 30
   publish:
     needs: build
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 15
     environment: pypi
     permissions:
@@ -101,7 +101,7 @@ jobs:
         run: uv run python scripts/distribute_release.py build-provenance
   github-release:
     needs: publish
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     timeout-minutes: 10
     permissions:
       contents: write
