@@ -24,21 +24,21 @@ concurrency:
 
 jobs:
   run-markdown-lint:
-    uses: alawein/.github/.github/workflows/lint-markdown.yml@c12a7427d24940f9da589b34a7eb59a7de552d00 # quality gates
+    uses: alawein/.github/.github/workflows/lint-markdown.yml@cc3b595f8e9e92a9ed6fc63b3be177cc8a571965 # quality gates
 
   run-link-check:
-    uses: alawein/.github/.github/workflows/check-links.yml@c12a7427d24940f9da589b34a7eb59a7de552d00 # quality gates
+    uses: alawein/.github/.github/workflows/check-links.yml@cc3b595f8e9e92a9ed6fc63b3be177cc8a571965 # quality gates
 
   run-actionlint:
-    uses: alawein/.github/.github/workflows/lint-actions.yml@c12a7427d24940f9da589b34a7eb59a7de552d00 # quality gates
+    uses: alawein/.github/.github/workflows/lint-actions.yml@cc3b595f8e9e92a9ed6fc63b3be177cc8a571965 # quality gates
 
   run-pr-title:
     permissions:
       pull-requests: read
-    uses: alawein/.github/.github/workflows/pr-title.yml@c12a7427d24940f9da589b34a7eb59a7de552d00 # quality gates
+    uses: alawein/.github/.github/workflows/pr-title.yml@cc3b595f8e9e92a9ed6fc63b3be177cc8a571965 # quality gates
 
   run-python-ci:
-    uses: alawein/.github/.github/workflows/python-ci.yml@c12a7427d24940f9da589b34a7eb59a7de552d00 # quality gates
+    uses: alawein/.github/.github/workflows/python-ci.yml@cc3b595f8e9e92a9ed6fc63b3be177cc8a571965 # quality gates
     with:
       python-version: "3.13"
       installer: uv
