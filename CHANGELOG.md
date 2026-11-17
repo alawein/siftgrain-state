@@ -5,7 +5,12 @@
 - Add Siftgrain State display branding, four offline viewer themes, dark/light controls, evidence timeline, and optional worker WebGL2 sweep.
 - Add explicit tau/SWE-bench/Inspect JSON conversion, a read-only stdio MCP check tool, and a composite GitHub Action.
 - Add pinned trajectory fault benchmark, local downloadable splits, browser/a11y/performance verification, and real theme recordings.
-- Retain package identity, stdlib runtime, schema v1/v2/v3 semantics, signatures, and atomic output safety.
+- Add the synthetic Agent Acceptance refund demo and include the State showcase in Pages artifacts.
+- Reject explicit null adapter snapshots, decode bounded UTF-8 MCP input frames, and escape lone surrogates in HTML exports.
+- Lead reports with evidence results and next actions, preserve exact supplied packets as downloads, and add Siftgrain suite navigation.
+- Rename the Python distribution and import package to siftgrain-state (module `siftgrain_state`); the `outcome-check`, `outcome-convert`, and `outcome-check-mcp` commands are unchanged.
+- Update the direct development Lighthouse dependency to 13.5.0 and pin the shared CI kit at v1.4.0.
+- Retain the stdlib runtime, schema v1/v2/v3 semantics, signatures, and atomic output safety.
 
 - Retry incomplete post-publication registry listings with bounded backoff while
   preserving strict distribution bytes, inventory and publisher provenance checks.
