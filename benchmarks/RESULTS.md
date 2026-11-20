@@ -28,7 +28,7 @@ Timed checker loop: 1.513819 s, 685.68 cases/s with tracemalloc enabled;
 peak traced Python allocation 160892 bytes. This is not resident process memory,
 a production SLA, or an instrument-free speed estimate. Reversed input ordering
 reproduced identical ID-bound verdicts. Timing is machine/load-sensitive.
-Exact environment, splits, metrics and source checksum: [results.json](benchmarks/results.json).
+Exact environment, splits, metrics and source checksum: [results.json](results.json).
 
 Native tau reward baseline: unavailable because the archive omits full final/goal
 databases and its native checker reconstructs goals by executing tools. We did
@@ -42,7 +42,7 @@ The retained prior study of 84 native-reported successes has 13 confirmed,
 9 contradicted,62 unobserved reservation-field projections. These are not
 full-task success judgments or proof of nine wrong native scores. All 84 full
 database/goal comparisons are unobserved because required snapshots are absent.
-See [tau study](studies/tau-airline/README.md). No missing state is recovered from
+See [tau study](../studies/tau-airline/README.md). No missing state is recovered from
 reward bits, signatures, or hashes.
 
 ## Software and viewer
@@ -50,14 +50,13 @@ reward bits, signatures, or hashes.
 Prechange:240 tests at 7c49ae4. Current product run:262 tests pass; lint/format,
 mypy, pyright,19 versioned schemas/10 examples, wheel/sdist build and actionlint
 pass. Fresh-clone source-bound results are recorded below and in the audit.
-See [PERF.md](PERF.md) for actual three-engine accessibility/cadence/LCP results,
+See [performance](../docs/performance.md) for actual three-engine accessibility/cadence/LCP results,
 Lighthouse, byte budgets, and unavailable field-INP/hardware claims.
 
-Human participants/labels: none. A future [protocol](benchmarks/data-v1/HUMAN_PROTOCOL.md)
+Human participants/labels: none. A future [protocol](data-v1/HUMAN_PROTOCOL.md)
 is supplied without fabricated outcomes. Native `.eval` archive support,
 independent collection, external full-task gold and population-level precision
-remain outside demonstrated coverage. [Requirement coverage](REQUIREMENTS.md)
-records these limits alongside implemented deliverables.
+remain outside demonstrated coverage.
 
 ## Fresh-clone verification
 

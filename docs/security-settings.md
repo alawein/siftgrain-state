@@ -23,7 +23,7 @@ to change them. The exact maintainer page is
 Its narrow anonymous-link-check exception remains because GitHub returns 404 to
 anonymous readers; public citations and release links remain checked.
 
-[Release readiness](RELEASE_READY.md) records the successful v0.3.0 trusted
+[Release readiness](release.md) records the successful v0.3.0 trusted
 publication and the new workflow. Never rotate or expose a token to work around
 registry authentication.
 

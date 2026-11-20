@@ -9,7 +9,6 @@ The [immutable tag](https://github.com/alawein/outcome-check/tree/v0.3.0),
 [PyPI release](https://pypi.org/project/outcome-check/0.3.0/), and
 [publish run 37799710726](https://github.com/alawein/outcome-check/actions/runs/37799710726)
 are published successfully. Do not retry or replace that version.
-Historical preparation evidence remains in [audit verification](AUDIT_VERIFICATION.md).
 
 ## v0.4.0 delivery
 
@@ -90,5 +89,5 @@ Never expose a token or invent an alternative secret flow.
 ## Pages and security
 
 Pages remains manual-only. The latest [deployment run](https://github.com/alawein/outcome-check/actions/runs/37828214231)
-succeeded from source `6500ecf94692bfb818c2fe00ae3371d9dac67b88`. [Security settings](SECURITY_SETTINGS.md) describe supported controls
+succeeded from source `6500ecf94692bfb818c2fe00ae3371d9dac67b88`. [Security settings](security-settings.md) describe supported controls
 and report-only audits. Local checks do not prove those remote controls changed.

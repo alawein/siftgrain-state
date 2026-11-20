@@ -185,7 +185,6 @@ def test_github_notes_follow_verified_registry_only(tmp_path, monkeypatch, fails
     (tmp_path / "pyproject.toml").write_text(
         f'[project]\nname="{manifest["name"]}"\nversion="{manifest["version"]}"\n'
     )
-    (tmp_path / "RELEASE_NOTES.md").write_text("Prepared; publication pending; not yet attempted")
     monkeypatch.chdir(tmp_path)
     for key, value in {
         "GITHUB_REPOSITORY": "owner/repo",

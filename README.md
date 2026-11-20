@@ -90,7 +90,7 @@ The GPU evidence sweep runs in an optional WebGL2 worker, with a static fallback
 
 Demo recordings: [Cartoon](assets/demos/cartoon.mp4),
 [Calm](assets/demos/calm.mp4), [Pixel](assets/demos/pixel.mp4),
-[Lab](assets/demos/lab.mp4). See [performance evidence](PERF.md) for measured
+[Lab](assets/demos/lab.mp4). See [performance evidence](docs/performance.md) for measured
 results and the limits of automated accessibility and interaction measurements.
 
 ## Reproduce the benchmark
@@ -104,7 +104,7 @@ core, injects known faults, checks each case, and creates
 `build/siftgrain-state-data-v1.zip`. Subsequent offline runs use
 `uv run python benchmarks/run.py` with the retained source.
 Dev/test cases and separate answer keys are inside the local archive.
-[Results](RESULTS.md), [datasheet](benchmarks/data-v1/DATASHEET.md), and
+[Results](benchmarks/RESULTS.md), [datasheet](benchmarks/data-v1/DATASHEET.md), and
 [dataset card](benchmarks/data-v1/README.md) describe its actual scope.
 
 ## How this differs
@@ -115,7 +115,7 @@ evaluates instance test results; [Inspect](https://inspect.aisi.org.uk/scoring.h
 provides configurable scorers. Siftgrain State checks supplied, named evidence
 against explicit conditions without running any of those environments. It adds
 freshness, subject binding, and required-change checks, not independent collection
-or an alternative measure of full-task success. [Research](RESEARCH.md) records
+or an alternative measure of full-task success. [Research](docs/research.md) records
 source dates and related work.
 
 ## Limits and compatibility
@@ -126,10 +126,20 @@ A hash binds bytes only. The verifier cannot establish actual execution, state
 collection accuracy, causation, or the completeness of a caller's goal.
 
 v0.2.x packets still load with their original semantics; migration to schema v3
-is explicit and refuses signed input. [Contract](docs/contract.md),
-[migration](MIGRATION.md), and [requirement coverage](REQUIREMENTS.md) distinguish
-implemented behavior from missing external evidence.
+is explicit and refuses signed input. [Contract](docs/contract.md)
+and [migration](docs/migration.md) distinguish implemented behavior from
+missing external evidence.
 The bounded regex language deliberately rejects general expressions.
+
+## Docs
+
+[Contract](docs/contract.md), [adapters and MCP](docs/adapters.md),
+[migration](docs/migration.md), [decisions](docs/decisions.md),
+[performance](docs/performance.md), [brand](docs/brand.md),
+[research](docs/research.md), [release process](docs/release.md),
+[security settings](docs/security-settings.md),
+[shared code](docs/shared-code.md), [changelog](CHANGELOG.md). Agents:
+[AGENTS.md](AGENTS.md). Reviewers: [REVIEW.md](REVIEW.md).
 
 MIT license.
 

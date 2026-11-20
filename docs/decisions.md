@@ -17,7 +17,7 @@ The initial post-upload registry check observed an incomplete listing. Recovery
 [run 37824835131](https://github.com/alawein/outcome-check/actions/runs/37824835131)
 succeeded without reuploading verified files and created the public
 [GitHub Release](https://github.com/alawein/outcome-check/releases/tag/v0.4.0).
-Exact hashes and recovery evidence are in [release readiness](RELEASE_READY.md).
+Exact hashes and recovery evidence are in [release readiness](release.md).
 The entire Dependabot family remains excluded from this closeout.
 
 ## v0.4.0 decisions

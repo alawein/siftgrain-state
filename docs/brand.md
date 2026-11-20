@@ -11,7 +11,7 @@ missing observations. Confirmed means the declared check passed, never that the
 world is true or that an agent caused it.
 
 The family is Siftgrain; the descriptor is State. Siftgrain Cite and Siftgrain
-Audit are sibling products. [Name checks](docs/name-checks.json) record exact
+Audit are sibling products. [Name checks](name-checks.json) record exact
 GitHub, npm, PyPI, and Hugging Face searches plus a trademark-style web search
 on October 13, 2026.
 The search found no obvious competing software brand among returned Siftgrain
@@ -20,7 +20,7 @@ software collisions. Existing distribution identities remain compatible.
 
 Original SVG geometry uses three stepped receipt/observation stations. It is
 constructed from paths and rectangles, with no downloaded logo template or copied
-personal artwork. [Logo](brand/logo.svg) and [wordmark](brand/wordmark.svg) remain
+personal artwork. [Logo](../brand/logo.svg) and [wordmark](../brand/wordmark.svg) remain
 editable SVG. The palette comes from the shared unpublished suite token package,
 with dark night-market violet, warm paper, amber accents, mint confirmations,
 and pink contradictions. Light appearance has tested text/control contrast.

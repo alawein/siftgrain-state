@@ -42,5 +42,5 @@ managed through the established secret owner; never print or commit them.
 Preserve existing release tags and feature branches. No force pushes, unrelated
 remote changes, new repositories, or kohyr copies are part of this closeout.
 
-Version 0.3.0 was merged and published on October 8, 2026; see RELEASE_READY.md
+Version 0.3.0 was merged and published on October 8, 2026; see docs/release.md
 for verified links. Version 0.4.0 is the authorized compatible feature closeout.

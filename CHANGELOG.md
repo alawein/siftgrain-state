@@ -23,6 +23,7 @@
 - Add an executable full-state study protocol with honest missing-input coverage.
 - Retain one canonical release build, attest and distribute the same verified bytes.
 - Add shared output conformance vectors and reconcile published v0.3.0 documentation.
+- Published to PyPI and GitHub Releases from source `6f026e2f59059c34dd53b496eb4ff973712d380d`; hashes and recovery evidence in `docs/release.md`.
 
 ## 0.3.0 - 2026-10-08
 

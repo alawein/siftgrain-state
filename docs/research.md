@@ -69,7 +69,7 @@ inventories without a verified license/version/checksum are research references,
 not redistributed data. No human labels or LLM judge run are claimed.
 
 The family name search, rejected collision, and limited trademark-style result
-are in [name checks](docs/name-checks.json). Actual repository commits, PRs,
-releases, and current security observations are in [repo history](docs/repo-history.json).
-Cross-repository visual/style history is in [shared history](docs/shared-history.md).
+are in [name checks](name-checks.json). Actual repository commits, PRs,
+releases, and current security observations are in [repo history](repo-history.json).
+Cross-repository visual/style history is in [shared history](shared-history.md).
 Settings history is not fully observable from the available user-repository API.
