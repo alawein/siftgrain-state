@@ -24,7 +24,7 @@ midrange-laptop certification. CI enforces median<=18 ms and p95<25 ms for this
 finite smoke interaction, plus every observed event duration<200 ms. Event Timing
 samples are not field INP; if no qualifying interaction entry appears, it is
 unavailable. Engines may differ in LCP/Event Timing support. Exact raw local
-results are in [docs/browser-results.json](docs/browser-results.json).
+results are in [docs/browser-results.json](browser-results.json).
 
 ## Lighthouse and bytes
 
@@ -39,7 +39,7 @@ Local-file LCP comes from Playwright above, not the localhost Lighthouse run.
 The October 19, 2026 local Lighthouse 13.5.0 run measured performance 0.97,
 accessibility 1, LCP 955.175 ms and total blocking time 0 ms. These synthetic
 measurements do not replace the retained 12.8.2 summary in
-[docs/lighthouse-summary.json](docs/lighthouse-summary.json).
+[docs/lighthouse-summary.json](lighthouse-summary.json).
 
 CI enforces Lighthouse LCP<2500 ms and accessibility 1.0, full axe checks,
 active-cadence/event limits, and emitted report gzip<=32,768 bytes. The exact bytes
@@ -70,14 +70,14 @@ Browser tooling is development-only. Playwright 1.62.1 release July 30, 2026;
 axe 4.10.3 March 5, 2025 (npm time metadata read October 13, 2026). Direct
 Lighthouse is pinned at 13.5.0; LHCI retains its nested 12.6.1.
 npm/pip audits are report-only. No audit result is a security
-certificate. Hardware identity is in RESULTS.md; remote CI timing is separate.
+certificate. Hardware identity is in [benchmarks/RESULTS.md](../benchmarks/RESULTS.md); remote CI timing is separate.
 
 ## Host contention and exact tooling
 
 A prior shared-host WebKit replay sample had median 16 ms/p95 33 ms and correctly
 failed the unchanged budget. A later same-context blank/app comparison under
 reduced contention had p95 17 ms for each; the final full matrix above passed.
-[Raw comparison](docs/webkit-cadence-comparison.json) is not a fully isolated
+[Raw comparison](webkit-cadence-comparison.json) is not a fully isolated
 hardware certification. Other agent sessions were still active during the
 diagnostic. No budget was relaxed to obtain a pass.
 
@@ -90,7 +90,7 @@ generated measurements are retained. Its final run is recorded with PR checks.
 Native Lighthouse CI completed one local URL/run successfully: performance
 0.95, accessibility 1, LCP 853.15 ms,
 TBT 165.50 ms using Lighthouse 12.6.1.
-Both configured assertions passed. [Native result](docs/lhci-results.json).
+Both configured assertions passed. [Native result](lhci-results.json).
 
 Final controller regression checks include immediate cancellation of active Web
 Animations on Pause and reduced-motion changes, plus keyboard focus/Space

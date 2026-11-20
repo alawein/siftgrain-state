@@ -21,4 +21,4 @@ The source revision is March 18, 2026, but the underlying paper is June 2024.
 This is genuine public recorded agent data, not a newly collected 2026 agent run.
 
 See [datasheet](DATASHEET.md), [provenance](provenance.json),
-[Croissant](croissant.json), and [results](../../RESULTS.md).
+[Croissant](croissant.json), and [results](../RESULTS.md).
