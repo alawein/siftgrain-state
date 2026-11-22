@@ -9,8 +9,10 @@ It does not execute actions or track them over time.
 
 A successful action receipt can accompany the wrong state. Siftgrain State
 shows the receipt, observation, baseline, freshness, and verdict together.
-The `siftgrain-state` Python package and the `outcome-check` CLI need Python
+The `siftgrain-state` Python package and the `siftgrain-state` CLI need Python
 3.11+ and the standard library, with no network or model calls.
+The legacy `outcome-check`, `outcome-convert` and `outcome-check-mcp` commands
+remain compatible aliases; see [migration](docs/migration.md).
 
 ## First check
 
@@ -18,11 +20,11 @@ Install [uv](https://docs.astral.sh/uv/), then from a clone of this repository:
 
 ```sh
 uv sync --frozen
-uv run outcome-check examples/checks-v3.packet.json --html report.html
+uv run siftgrain-state examples/checks-v3.packet.json --html report.html
 ```
 
 For your own check, write a packet with explicit requirements, observations and
-comparison time, then run `uv run outcome-check packet.json --html report.html
+comparison time, then run `uv run siftgrain-state packet.json --html report.html
 --json report.json`. Use baselines only when the requirement needs them. The
 [packet contract](docs/contract.md) defines each field.
 
@@ -50,8 +52,8 @@ Baseline comparisons establish observed change, not which agent caused it.
 Convert an explicit native SWE-bench per-instance report:
 
 ```sh
-uv run outcome-convert swebench report.json --as-of 2026-10-13T12:00:00Z --observed-at 2026-10-13T11:59:30Z --max-age-seconds 60 --output packet.json
-uv run outcome-check packet.json --html outcome.html
+uv run siftgrain-state-convert swebench report.json --as-of 2026-10-13T12:00:00Z --observed-at 2026-10-13T11:59:30Z --max-age-seconds 60 --output packet.json
+uv run siftgrain-state packet.json --html outcome.html
 ```
 
 The tau adapter accepts explicitly supplied `initial_state` and `final_state`.
@@ -61,7 +63,7 @@ stay unobserved; reward, score, tool-call arguments, and assistant claims do not
 become observations. Native binary `.eval` archives are not decoded.
 See [adapter contract](docs/adapters.md) for exact shapes and limits.
 
-Run the read-only MCP tool over stdio with `uv run outcome-check-mcp`. Configure
+Run the read-only MCP tool over stdio with `uv run siftgrain-state-mcp`. Configure
 that command in your MCP client. It accepts a packet object, never a file path,
 command, URL, model, or executor. [MCP contract](docs/adapters.md#mcp) documents
 its finite protocol scope. A [composite GitHub Action](action.yml) checks packets

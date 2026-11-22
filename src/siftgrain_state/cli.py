@@ -15,7 +15,7 @@ def main(argv: list[str] | None = None) -> int:
         epilog=(
             "packet shape: schema_version 1 with as_of, requirements, actions, "
             "observations; see docs/contract.md. "
-            "example: outcome-check examples/packet.json --html report.html. "
+            "example: siftgrain-state examples/packet.json --html report.html. "
             "exit 0 all confirmed; exit 1 needs review; exit 2 invalid input or I/O."
         ),
     )
@@ -69,5 +69,5 @@ def main(argv: list[str] | None = None) -> int:
             sys.stdout.write(render_json(report))
         return report["exit_code"]
     except (InputError, OSError, ValueError, OverflowError, RecursionError, ImportError) as exc:
-        print(f"outcome-check: {exc}", file=sys.stderr)
+        print(f"siftgrain-state: {exc}", file=sys.stderr)
         return 2

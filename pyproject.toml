@@ -20,6 +20,9 @@ Issues = "https://github.com/alawein/siftgrain-state/issues"
 signing = ["cryptography>=44"]
 
 [project.scripts]
+siftgrain-state = "siftgrain_state.cli:main"
+siftgrain-state-convert = "siftgrain_state.convert:main"
+siftgrain-state-mcp = "siftgrain_state.mcp:main"
 outcome-check = "siftgrain_state.cli:main"
 outcome-convert = "siftgrain_state.convert:main"
 outcome-check-mcp = "siftgrain_state.mcp:main"
