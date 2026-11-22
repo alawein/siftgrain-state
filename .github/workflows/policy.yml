@@ -1,0 +1,44 @@
+name: Policy
+
+# PR-metadata gates. They read the PR title, so they rerun on `edited`; ci.yml does not,
+# so editing a PR body or title never cancels a CI run on the same commit (the kit split
+# in alawein/.github docs/ci.md). The ruleset requires from this file: pr-title
+# Each metadata event completes independently, so an unvalidated latest event cannot
+# become a skipped success.
+
+on:
+  pull_request:
+    types: [opened, edited, synchronize, reopened, ready_for_review, converted_to_draft]
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+concurrency:
+  group: policy-${{ github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  run-pr-title:
+    permissions:
+      pull-requests: read
+    uses: alawein/.github/.github/workflows/pr-title.yml@cc3b595f8e9e92a9ed6fc63b3be177cc8a571965 # quality gates
+
+  pr-title:
+    needs: [run-pr-title]
+    if: ${{ always() }}
+    runs-on: ubuntu-24.04
+    timeout-minutes: 1
+    permissions: {}
+    steps:
+      # Only the actual main-push event may omit PR-title evaluation.
+      - name: Require success or eligible main-push skip
+        env:
+          RESULT: ${{ needs.run-pr-title.result }}
+          EVENT: ${{ github.event_name }}
+          REF: ${{ github.ref }}
+        run: |
+          [ "$RESULT" = "success" ] || {
+            [ "$RESULT" = "skipped" ] && [ "$EVENT" = "push" ] && [ "$REF" = "refs/heads/main" ]
+          }
