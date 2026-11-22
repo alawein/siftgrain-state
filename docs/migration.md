@@ -19,6 +19,10 @@ New entrypoints `outcome-convert` and `outcome-check-mcp` are additive. Conversi
 requires explicit subject, clocks, and goals. Outputs use the same no-clobber,
 input-alias, and atomic-write policy as the checker.
 
+The primary commands are now `siftgrain-state`, `siftgrain-state-convert` and
+`siftgrain-state-mcp`. The three `outcome-*` commands stay installed as aliases
+for the same entry points, so existing scripts keep working.
+
 The repository rename is complete, and the distribution and import rename to
 `siftgrain-state` and `siftgrain_state` is applied. GitHub redirects do not rename
 Python imports or preserve every external badge, so update verified consumers and

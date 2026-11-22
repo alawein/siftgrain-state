@@ -117,7 +117,7 @@ def test_fractional_as_of_age():
 def test_cli_missing_input_returns_two(capsys, tmp_path):
     missing = tmp_path / "does-not-exist.json"
     assert main([str(missing)]) == 2
-    assert "outcome-check" in capsys.readouterr().err
+    assert "siftgrain-state" in capsys.readouterr().err
 
 
 def test_cli_missing_output_dir_returns_two(tmp_path):

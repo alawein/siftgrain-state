@@ -34,7 +34,11 @@ def main() -> None:
         ).strip()
         if not Path(origin).resolve().is_relative_to(root):
             raise RuntimeError("Imported checkout instead of isolated artifact")
-        command = scripts / ("outcome-check.exe" if os.name == "nt" else "outcome-check")
+        exe = ".exe" if os.name == "nt" else ""
+        for legacy in ("outcome-check", "outcome-convert", "outcome-check-mcp"):
+            if not (scripts / (legacy + exe)).exists():
+                raise RuntimeError(f"Legacy entrypoint missing: {legacy}")
+        command = scripts / ("siftgrain-state" + exe)
         result = subprocess.run(
             [str(command), str(examples / "packet.json")],
             cwd=root,

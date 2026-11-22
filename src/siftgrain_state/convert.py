@@ -54,7 +54,7 @@ def main(argv: list[str] | None = None) -> int:
             sys.stdout.write(render_json(packet))
         return 0
     except (InputError, OSError, ValueError, TypeError, RecursionError, OverflowError) as exc:
-        print(f"outcome-convert: {exc}", file=sys.stderr)
+        print(f"siftgrain-state-convert: {exc}", file=sys.stderr)
         return 2
 
 

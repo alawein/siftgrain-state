@@ -201,7 +201,7 @@ def render_html(
         "<details><summary>Check your own inputs</summary>"
         "<p>Supply your requirements, observations, comparison time and any required baselines "
         "or action receipts in a packet. See the repository input contract.</p>"
-        "<pre>uv run outcome-check packet.json --html report.html --json report.json</pre>"
+        "<pre>uv run siftgrain-state packet.json --html report.html --json report.json</pre>"
         "<p>Confirmed evidence does not authenticate execution or establish causation.</p>"
         "</details></section>"
     )
