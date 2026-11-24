@@ -42,7 +42,7 @@ def dispatch(request: dict) -> dict:
         return {
             "protocolVersion": "2025-06-18",
             "capabilities": {"tools": {}},
-            "serverInfo": {"name": "outcome-check", "version": "0.5.0.dev0"},
+            "serverInfo": {"name": "outcome-check", "version": "0.5.0"},
         }
     if method == "ping":
         return {}
