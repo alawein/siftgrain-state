@@ -2,9 +2,9 @@
 
 Siftgrain State is the display brand and the GitHub repository is
 `alawein/siftgrain-state`. Distribution `siftgrain-state` and import
-`siftgrain_state` replace the old `outcome-check` package name. CLI
-`outcome-check` and the `outcome-convert` and `outcome-check-mcp` entrypoints
-remain compatible. No existing tag, packet, or JSON result field is renamed.
+`siftgrain_state` replace the old `outcome-check` package name. The CLI is now
+`siftgrain-state`, with `siftgrain-state-mcp` for the MCP server; `outcome-check`,
+`outcome-convert`, and `outcome-check-mcp` remain compatible entrypoints. No existing tag, packet, or JSON result field is renamed.
 
 v0.2.x schema v1 packets load directly. Their three-state semantics remain intact;
 no required change or baseline is silently added. Schema v2/v3 adds `unconfirmed`.
