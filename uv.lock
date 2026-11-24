@@ -1811,7 +1811,7 @@ wheels = [
 
 [[package]]
 name = "siftgrain-state"
-version = "0.5.0.dev0"
+version = "0.5.0"
 source = { editable = "." }
 
 [package.optional-dependencies]

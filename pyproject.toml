@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "siftgrain-state"
-version = "0.5.0.dev0"
+version = "0.5.0"
 description = "Compare requested outcomes with supplied state evidence."
 readme = "README.md"
 requires-python = ">=3.11"

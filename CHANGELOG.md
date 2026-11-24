@@ -1,7 +1,8 @@
 # Changelog
 
-## Unreleased
+## 0.5.0 - 2026-11-24
 
+- Add `siftgrain-state` and `siftgrain-state-mcp` as the primary command names; `outcome-check`, `outcome-convert`, and `outcome-check-mcp` remain compatible aliases.
 - Add Siftgrain State display branding, four offline viewer themes, dark/light controls, evidence timeline, and optional worker WebGL2 sweep.
 - Add explicit tau/SWE-bench/Inspect JSON conversion, a read-only stdio MCP check tool, and a composite GitHub Action.
 - Add pinned trajectory fault benchmark, local downloadable splits, browser/a11y/performance verification, and real theme recordings.
