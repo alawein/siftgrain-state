@@ -1,11 +1,13 @@
 # Siftgrain State
 
+![Siftgrain State](brand/wordmark.svg)
+
 Siftgrain State helps developers who evaluate AI agents check whether supplied
 evidence supports a requested outcome against observed state.
 
-It does not execute actions or track them over time.
+![Agent evaluation](assets/label-purpose.svg) ![Python](assets/label-stack.svg) ![Offline CLI](assets/label-runtime.svg)
 
-![Siftgrain State](brand/wordmark.svg)
+It does not execute actions or track them over time.
 
 A successful action receipt can accompany the wrong state. Siftgrain State
 shows the receipt, observation, baseline, freshness, and verdict together.
