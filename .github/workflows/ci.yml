@@ -5,13 +5,14 @@
 # To update it: find the new SHA (gh api repos/alawein/.github/commits/main --jq .sha),
 # replace all pins in this file at once, and open a PR. Steps are in docs/ci.md, "Bump a pin".
 #
-# Required checks for the ruleset: markdown-lint, link-check, actionlint, pr-title, python-ci
+# Required checks for the ruleset: markdown-lint, link-check, actionlint, python-ci
+# pr-title is required from policy.yml, which alone reruns on `edited`.
 
 name: CI
 
 on:
   pull_request:
-    types: [opened, edited, synchronize, reopened]
+    types: [opened, synchronize, reopened]
   push:
     branches: [main]
 
@@ -31,11 +32,6 @@ jobs:
 
   run-actionlint:
     uses: alawein/.github/.github/workflows/lint-actions.yml@cc3b595f8e9e92a9ed6fc63b3be177cc8a571965 # quality gates
-
-  run-pr-title:
-    permissions:
-      pull-requests: read
-    uses: alawein/.github/.github/workflows/pr-title.yml@cc3b595f8e9e92a9ed6fc63b3be177cc8a571965 # quality gates
 
   run-python-ci:
     uses: alawein/.github/.github/workflows/python-ci.yml@cc3b595f8e9e92a9ed6fc63b3be177cc8a571965 # quality gates
@@ -80,24 +76,6 @@ jobs:
         env:
           RESULT: ${{ needs.run-actionlint.result }}
         run: test "$RESULT" = "success"
-
-  pr-title:
-    needs: [run-pr-title]
-    if: ${{ always() }}
-    runs-on: ubuntu-24.04
-    timeout-minutes: 1
-    permissions: {}
-    steps:
-      # Only the actual main-push event may omit PR-title evaluation.
-      - name: Require success or eligible main-push skip
-        env:
-          RESULT: ${{ needs.run-pr-title.result }}
-          EVENT: ${{ github.event_name }}
-          REF: ${{ github.ref }}
-        run: |
-          [ "$RESULT" = "success" ] || {
-            [ "$RESULT" = "skipped" ] && [ "$EVENT" = "push" ] && [ "$REF" = "refs/heads/main" ]
-          }
 
   python-ci:
     needs: [run-python-ci]
