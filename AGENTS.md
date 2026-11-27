@@ -44,3 +44,7 @@ remote changes, new repositories, or kohyr copies are part of this closeout.
 
 Version 0.3.0 was merged and published on October 8, 2026; see docs/release.md
 for verified links. Version 0.4.0 is the authorized compatible feature closeout.
+
+## Review guidelines
+
+Apply [`REVIEW.md`](REVIEW.md) and the shared [reviewer policy](https://github.com/alawein/.github/blob/main/docs/system/reviewers.md). Kilo Code reviews automatically; CodeRabbit only where the owner allow-lists this repository; Bugbot, Codex, Claude and Copilot run only on a named owner request.
