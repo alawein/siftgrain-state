@@ -100,7 +100,7 @@ jobs:
           }
 
   python-ci:
-    needs: [run-python-ci]
+    needs: [run-python-ci, product-validation]
     if: ${{ always() }}
     runs-on: ubuntu-24.04
     timeout-minutes: 1
@@ -109,7 +109,8 @@ jobs:
       - name: Require success
         env:
           RESULT: ${{ needs.run-python-ci.result }}
-        run: test "$RESULT" = "success"
+          LOCAL_RESULT: ${{ needs.product-validation.result }}
+        run: test "$RESULT" = "success" && test "$LOCAL_RESULT" = "success"
 
 
   product-validation:
